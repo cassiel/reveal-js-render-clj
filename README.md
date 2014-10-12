@@ -1,6 +1,6 @@
 `-*- mode: markdown; mode: visual-line; mode: adaptive-wrap-prefix; -*-`
 
-reveal.js-render-clj
+reveal-js-render-clj
 ====================
 
 A renderer for turning Hiccup-based presentation files into reveal.js presentations.
@@ -25,5 +25,4 @@ Note that the `reveal.js` support directories (`js` and `lib`) are copied into p
 
 Copyright © 2014 Nick Rothwell
 
-Distributed under the Eclipse Public License either version 1.0 or (at
-your option) any later version.
+Distributed under the Eclipse Public License either version 1.0 or (at your option) any later version.

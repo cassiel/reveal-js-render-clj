@@ -4,10 +4,10 @@
 
   (:gen-class))
 
-(defn render-from-edn [str]
+(defn ^:deprecated render-from-edn [str]
   (html (edn/read-string str)) )
 
-(defn assemble-edn
+(defn ^:deprecated assemble-edn
   "Expects an EDN map with keys `:title`, `:author` and `:slides`. The title and author are baked
    into the head, while the sequence from slides is planted within `:div.reveal`/`:div.slides`.
    (Each slide is a `[:section ...]`.)"
@@ -19,7 +19,23 @@
      :body-part (html [:div.reveal
                        (vec (cons :div.slides slides))])}))
 
-(defn render [in-file out-file reveal-js-root]
+(defn render
+  "Called within the form passed to `eval`."
+  [& {:keys [title author slides]}]
+  {:head-part (html [:title title]
+                    [:meta {:name "description" :content title}]
+                    [:meta {:name "author" :content author}])
+   :body-part (html [:div.reveal
+                     (vec (cons :div.slides slides))])}  )
+
+
+(defn render-from-clj [file]
+
+  )
+
+
+
+(defn renderxxx [in-file out-file reveal-js-root]
   )
 
 (defn -main

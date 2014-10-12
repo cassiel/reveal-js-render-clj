@@ -19,7 +19,7 @@ You need an installed Java system. Then:
                       
 The `--reveal.js` argument defaults to `~/GITHUB/cassiel/reveal.js/`. The `--output` argument defaults to the same path and name as the input, with `.clj` replaced by `.html`. *Warning*: note that the input file is actually evaluated as a Clojure program (we use `read` and `eval`), so it should only contain code that you trust. (We have partial support for EDN, but it's not clear how useful this would be in isolation.)
 
-Note that the `reveal.js` support directories (`js` and `lib`) are copied into place alongside the output, so existing directories with these names will be removed.
+Note that the `reveal.js` support directories (`js`, `lib`, `plugin`, `css`) are copied into place alongside the output, so existing directories with these names will be removed.
 
 ## License
 

@@ -26,3 +26,5 @@ render
 (renderer/render-main (File. "/Users/nick/GITHUB/cassiel/reveal-js-render-clj/resources/test_input.clj")
                       (File. "/Users/nick/GITHUB/cassiel/reveal-js-render-clj/resources/test_input.html")
                       (File. "/Users/nick/GITHUB/cassiel/reveal.js"))
+
+(.getCanonicalFile (File. "yes/../x.tmp"))

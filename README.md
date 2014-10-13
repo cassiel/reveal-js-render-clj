@@ -13,9 +13,9 @@ This project uses the index file from our `reveal.js` fork (which must be availa
 
 You need an installed Java system. Then:
 
-        java xxxx.jar --reveal.js <where-our-reveal.js-is-installed> \
-                      --input presentation.clj \
-                      --output presentation.html
+        lein run --reveal.js <where-our-reveal.js-is-installed> \
+                 --input [...]/presentation.clj \
+                 --output [...]/presentation.html
                       
 The `--reveal.js` argument defaults to `~/GITHUB/cassiel/reveal.js/`. *Warning*: note that the input file is actually evaluated as a Clojure program (we use `read` and `eval`), so it should only contain code that you trust. (We have partial support for EDN, but it's not clear how useful this would be in isolation.)
 

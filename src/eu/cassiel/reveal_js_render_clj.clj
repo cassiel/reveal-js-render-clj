@@ -22,6 +22,27 @@
      :body-part (html [:div.reveal
                        (vec (cons :div.slides slides))])}))
 
+;; Called from the slide contents:
+
+(defn code [& lines]
+  [:pre [:code (clojure.string/trim (clojure.string/join "\n" lines))]])
+
+(defn image-h [h f]
+  [:img {:height h
+         :style "margin:10px; vertical-align:middle"
+         :src (str (File. "images" f))}])
+
+(defn image [f] (image-h 480 f))
+
+(defn video [f]
+  [:video {:height 480
+           :controls 1
+           :data-autoplay 1}
+   [:source {:src (str (File. "media" f))}]])
+
+(defn github [stem text]
+  [:a {:href (str "https://github.com/" stem)} text])
+
 (defn render
   "Called within the form passed to `eval`."
   [& {:keys [theme title author slides]}]
@@ -75,29 +96,51 @@
 (def HOME (System/getProperty "user.home"))
 
 (def cli-options
-  [[nil "--reveal.js DIR" "The root of the reveal.js source tree"
+  [[nil "--reveal.js"
+    :required "[the root of the reveal.js source tree]"
     :parse-fn #(.getCanonicalFile (File. %))
+    :validate [#(and (.isDirectory %)
+                     (.exists (File. % "index-ssi.shml"))) "reveal.js directory required"]
     :id :reveal-js
     :default (-> HOME
                  (File. "GITHUB")
                  (File. "cassiel")
                  (File. "reveal.js"))]
-   [nil "--input FILE" "Input file (Clojure source)"
-    :parse-fn #(.getCanonicalFile (File. %))]
 
-   [nil "--output FILE" "Output file (HTML)"
-    :parse-fn #(.getCanonicalFile (File. %))]])
+   [nil "--dir"
+    :required "[input (and output) directory]"
+    :parse-fn #(when % (.getCanonicalFile (File. %)))
+    :validate [#(when % (.isDirectory %)) "must be a directory"]]
+
+   [nil "--input"
+    :required "[input file (Clojure source) in DIR]"
+    :validate [some? "input file expected"]]
+
+   [nil "--output"
+    :required "[output file (HTML) in DIR]"
+    :validate [some? "output file expected"]]])
 
 (defn -main
   [& args]
-  (let [parsed (parse-opts args cli-options)
-        {:keys [input output reveal-js]} (:options parsed)]
-    (if (and input output)
-      (do
-        (println "       " (str input))
-        (println "     ->" (str output))
-        (println "  using" (str reveal-js))
-        (render-main input output reveal-js)
-        (println "done")
-        (System/exit 0))
-      (println "Usage:\n" (:summary parsed)))))
+  (let [{:keys [options errors summary]} (parse-opts args cli-options)
+        {:keys [input output dir reveal-js]} options]
+    (cond errors
+          (do
+            (dorun (map println errors))
+            (println summary)
+            (System/exit 1))
+
+          (not (and input output dir))
+          (println "usage:\n" summary)
+
+          :else
+          (let [in-file (.getCanonicalFile (File. dir input))
+                out-file (.getCanonicalFile (File. dir output))]
+            (println "       " (str in-file))
+            (println "     ->" (str out-file))
+            (println "  using" (str reveal-js))
+            (render-main in-file
+                         out-file
+                         reveal-js)
+            (println "done")
+            (System/exit 0)))))

@@ -11,7 +11,7 @@ This project uses the index file from our `reveal.js` fork (which must be availa
 
 ## Usage
 
-You need an installed Java system. Then:
+You need an installed Java system, and [Leiningen](http://leiningen.org/). Then, in the root folder of this project:
 
         lein run --reveal.js <where-our-reveal.js-is-installed> \
                  --input [...]/presentation.clj \

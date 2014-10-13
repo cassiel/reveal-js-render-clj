@@ -69,7 +69,7 @@
                        (clojure.string/replace HEAD-TAG head-part)
                        (clojure.string/replace CONTENT-TAG body-part)))
     (doseq [d ["lib" "js" "css" "plugin"]]
-      (println "copying: " d)
+      (println "copying" d)
       (copy-over d reveal-js-root out-root))))
 
 (def HOME (System/getProperty "user.home"))
@@ -78,10 +78,10 @@
   [[nil "--reveal.js DIR" "The root of the reveal.js source tree"
     :parse-fn #(.getCanonicalFile (File. %))
     :id :reveal-js
-    :default (str (-> HOME
-                      (File. "GITHUB")
-                      (File. "cassiel")
-                      (File. "reveal.js")))]
+    :default (-> HOME
+                 (File. "GITHUB")
+                 (File. "cassiel")
+                 (File. "reveal.js"))]
    [nil "--input FILE" "Input file (Clojure source)"
     :parse-fn #(.getCanonicalFile (File. %))]
 
@@ -94,8 +94,10 @@
         {:keys [input output reveal-js]} (:options parsed)]
     (if (and input output)
       (do
-        (println "   " input)
-        (println "-> " output)
+        (println "       " (str input))
+        (println "     ->" (str output))
+        (println "  using" (str reveal-js))
         (render-main input output reveal-js)
-        (println "done"))
+        (println "done")
+        (System/exit 0))
       (println "Usage:\n" (:summary parsed)))))

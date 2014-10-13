@@ -1,6 +1,8 @@
 (ns user
   (:require (eu.cassiel [reveal-js-render-clj :as renderer])
-            [clojure.edn :as edn])
+            [clojure.edn :as edn]
+            [me.raynes.conch :refer [with-programs]])
+
   (:import (java.io File)))
 
 (renderer/render-from-edn "[:h1 [:a.foo {:href \"/x.html\"} \"My Link\"]]")
@@ -26,5 +28,8 @@ render
 (renderer/render-main (File. "/Users/nick/GITHUB/cassiel/reveal-js-render-clj/resources/test_input.clj")
                       (File. "/Users/nick/GITHUB/cassiel/reveal-js-render-clj/resources/test_input.html")
                       (File. "/Users/nick/GITHUB/cassiel/reveal.js"))
+
+(with-programs [ls]
+  (ls "-l" "/Users/nick/file with spaces.txt"))
 
 (.getCanonicalFile (File. "yes/../x.tmp"))

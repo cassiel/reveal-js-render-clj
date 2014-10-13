@@ -7,7 +7,8 @@
                  [hiccup "1.0.5"]
                  [me.raynes/conch "0.8.0"]
                  [org.clojure/clojure "1.6.0"]]
-  :plugins [[cider/cider-nrepl "0.7.0"]]
+  :plugins [[cider/cider-nrepl "0.7.0"]
+            [lein-bin "0.3.4"]]
   :main ^:skip-aot eu.cassiel.reveal-js-render-clj
   :target-path "target/%s"
   :profiles {:uberjar {:aot :all}})

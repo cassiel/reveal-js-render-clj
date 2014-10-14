@@ -24,7 +24,7 @@ Another warning: note that the `reveal.js` support directories (`js`, `lib`, `pl
 
 The presentation file takes a particular form: a call to a function `render` with keyword arguments for (CSS) `:theme`, `:title`, `:author` and `:slides` (a sequence of `:section` blocks). The output is a complete HTML document with HEAD and BODY properly populated, constructed from the index file of our `reveal.js` project.
 
-There's an [example slide](example/example_slides.clj) set in the directory `example`. To render that:
+There's an [example slide set](example/example_slides.clj) in the directory `example`. To render that:
 
         lein run --dir example \
                  --input example_slides.clj \

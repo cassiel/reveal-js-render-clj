@@ -45,6 +45,24 @@ Line 2
                   [:p "Visualisation of textual instructions"]
                   [:p "Documentation and change history"]]
 
+                 [:section
+                  [:h2 "YouTube Video (link)"]
+                  (youtube-link "N3vYiJ1CR1g" "Cassiel / Nina Kov")]
+
+                 [:section
+                  [:h2 "YouTube Embed"]
+                  (youtube-embed "N3vYiJ1CR1g")
+                  [:p "Cassiel / Nina Kov"]]
+
+                 [:section
+                  [:h2 "Vimeo Video (link)"]
+                  (vimeo-link "85954954" "Chisato Minamimura")]
+
+                 [:section
+                  [:h2 "Vimeo Embed"]
+                  (vimeo-embed "85954954")
+                  [:p "Chisato Minamimura"]]
+
                  [:section {:data-state "alert"}
                   [:p "An important point!"]]
 

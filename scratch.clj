@@ -38,9 +38,12 @@ render
 
 (.getCanonicalFile (File. "yes/../x.tmp"))
 
-(let [topic "HTML/05_building_sites_with_Bootstrap"
-      dir (File. (format "/Users/nick/CASSIEL/codezoners-2-prep/%s/presentation" topic))
-      reveal-js (File. "/Users/nick/GITHUB/cassiel/reveal.js")]
-  (renderer/render-main (File. dir "presentation.clj")
-                        (File. dir "presentation.html")
-                        reveal-js))
+;; Convenience functions for Codezoners:
+(defn render-site [topic]
+  (let [dir (File. (format "/Users/nick/CASSIEL/codezoners-2-prep/%s/presentation" topic))
+        reveal-js (File. "/Users/nick/GITHUB/cassiel/reveal.js")]
+    (renderer/render-main (File. dir "presentation.clj")
+                          (File. dir "presentation.html")
+                          reveal-js)))
+
+(render-site "HTML/05_building_sites_with_Bootstrap")

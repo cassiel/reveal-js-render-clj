@@ -32,7 +32,7 @@
          :style "margin:10px; vertical-align:middle"
          :src (str (File. "images" f))}])
 
-(defn image [f] (image-h 480 f))
+(def image (partial image-h 480))
 
 (defn video [f]
   [:video {:height 480
@@ -47,6 +47,30 @@
   "Raw link, URL monospaced."
   [url]
   [:a {:href url} [:code url]])
+
+(defn youtube-link [id caption]
+  [:a {:href (format "http://www.youtube.com/watch?v=%s" id)} caption])
+
+(defn youtube-embed-h [h id]
+  [:iframe {:id "ytplayer"
+            :type "text/html"
+            :height h
+            :width (int (* h 16/9))
+            :src (format "http://www.youtube.com/embed/%s" id)
+            :frameborder 0}])
+
+(def youtube-embed (partial youtube-embed-h 480))
+
+(defn vimeo-link [id caption]
+  [:a {:href  (format "http://vimeo.com/%s" id)} caption])
+
+(defn vimeo-embed-h [h id]
+  [:iframe {:src (format "http://player.vimeo.com/video/%s" id)
+            :height h
+            :width (int (* h 16/9))
+            :frameborder 0}])
+
+(def vimeo-embed (partial vimeo-embed-h 480))
 
 (defn render
   "Called within the form passed to `eval`."

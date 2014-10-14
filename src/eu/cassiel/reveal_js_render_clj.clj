@@ -43,6 +43,11 @@
 (defn github [stem text]
   [:a {:href (str "https://github.com/" stem)} text])
 
+(defn link
+  "Raw link, URL monospaced."
+  [url]
+  [:a {:href url} [:code url]])
+
 (defn render
   "Called within the form passed to `eval`."
   [& {:keys [theme title author slides]}]
@@ -60,6 +65,9 @@
 (def HEAD-TAG    #"<!--#include .*/head.html.*-->")
 (def CONTENT-TAG #"<!--#include .*/content.html.*-->")
 
+;; Dynamic functions which can be accessed within the presentation:
+(declare ^:dynamic include-code)
+
 (defn render-from-clj [file]
   (with-open [r (java.io.PushbackReader.
                  (clojure.java.io/reader file))]
@@ -68,7 +76,10 @@
         (try
           (do
             (in-ns 'eu.cassiel.reveal-js-render-clj)
-            (eval (read r)))
+            (binding [include-code (fn [f] (code (slurp (-> (.getParent file)
+                                                           (File. "include")
+                                                           (File. f)))))]
+              (eval (read r))))
           (finally (in-ns enclosing-ns)))))))
 
 (defn copy-over [dir reveal-js-root out-root]

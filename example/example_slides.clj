@@ -30,6 +30,11 @@ Line 2
 ")]
 
                  [:section
+                  [:h2 "Including Code"]
+                  [:p "Code can also be included verbatim from a separate file (in the " [:code "include"] " subdirectory)"]
+                  (include-code "included-html.html")]
+
+                 [:section
                   [:h2 "Three Images from Another Project"]
                   [:p "(Implicit: images come from " [:code "images"] " subdirectory.)"]
                   [:div

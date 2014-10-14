@@ -58,7 +58,7 @@ The `example_slides` set contains examples of all the helper functions available
 
 - `(vimeo-embed <id> <text>)`: embed a Vimeo video, with default height
 
-- `(github <path> <text>)`: include a like to a GitHub project.
+- `(github <path> <text>)`: include a link to a GitHub project.
 
 ## Performance
 

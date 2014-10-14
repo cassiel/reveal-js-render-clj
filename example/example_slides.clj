@@ -12,7 +12,8 @@
 
                  [:section
                   [:p "This is a paragraph."]
-                  [:p "This is " [:i "also"] " a paragraph."]]
+                  [:p "This is " [:i "also"] " a paragraph."]
+                  [:p "This is a link (with displayed URL): " (link "http://www.cassiel.com")]]
 
                  [:section
                   [:p "Here is some code, as separate lines."]

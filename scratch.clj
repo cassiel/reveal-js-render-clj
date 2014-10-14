@@ -19,10 +19,6 @@
 
 *ns*
 
-(in-ns 'user)
-render
-(inc 1)
-
 (ns-name *ns*)
 
 (renderer/render-main (File. "/Users/nick/GITHUB/cassiel/reveal-js-render-clj/resources/test_input.clj")
@@ -37,13 +33,3 @@ render
   (ls "-l" "/Users/nick/file with spaces.txt"))
 
 (.getCanonicalFile (File. "yes/../x.tmp"))
-
-;; Convenience functions for Codezoners:
-(defn render-site [topic]
-  (let [dir (File. (format "/Users/nick/CASSIEL/codezoners-2-prep/%s/presentation" topic))
-        reveal-js (File. "/Users/nick/GITHUB/cassiel/reveal.js")]
-    (renderer/render-main (File. dir "presentation.clj")
-                          (File. dir "presentation.html")
-                          reveal-js)))
-
-(render-site "HTML/05_building_sites_with_Bootstrap")

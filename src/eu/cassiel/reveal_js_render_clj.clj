@@ -24,8 +24,14 @@
 
 ;; Called from the slide contents:
 
+(defn htmlize [text]
+  (-> text
+      (clojure.string/replace "&" "&amp;")
+      (clojure.string/replace "<" "&lt;")
+      (clojure.string/replace ">" "&gt;")))
+
 (defn code [& lines]
-  [:pre [:code (clojure.string/trim (clojure.string/join "\n" lines))]])
+  [:pre [:code.html (clojure.string/trim (htmlize (clojure.string/join "\n" lines)))]])
 
 (defn image-h [h f]
   [:img {:height h

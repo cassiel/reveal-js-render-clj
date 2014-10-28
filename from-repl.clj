@@ -13,4 +13,5 @@
                           (File. dir "presentation.html")
                           reveal-js)))
 
+(render-site "HTML/03_forms_controls_inputs")
 (render-site "HTML/05_building_sites_with_Bootstrap")

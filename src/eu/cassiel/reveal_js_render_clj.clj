@@ -33,6 +33,9 @@
 (defn code [& lines]
   [:pre [:code.html (clojure.string/trim (htmlize (clojure.string/join "\n" lines)))]])
 
+(defn tt [text]
+  [:span {:style "font-family:monospace"} text])
+
 (defn image-h [h f]
   [:img {:height h
          :style "margin:10px; vertical-align:middle"

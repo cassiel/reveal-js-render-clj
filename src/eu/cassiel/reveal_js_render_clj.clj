@@ -24,6 +24,12 @@
 
 ;; Called from the slide contents:
 
+(defn heading [& args]
+  (vec (cons :h3 args)))
+
+(defn subheading [& args]
+  (vec (cons :h4 args)))
+
 (defn htmlize [text]
   (-> text
       (clojure.string/replace "&" "&amp;")
@@ -130,9 +136,10 @@
   (let [{:keys [head-part body-part]} (render-from-clj in-file)
         template (slurp (File. reveal-js-root  "index-ssi.shtml"))
         out-root (.getParent out-file)]
+    ;; Note the hacks here for armouring any "$" in the fragments:
     (spit out-file (-> template
-                       (clojure.string/replace HEAD-TAG head-part)
-                       (clojure.string/replace CONTENT-TAG body-part)))
+                       (clojure.string/replace HEAD-TAG (clojure.string/replace head-part "$" "\\$"))
+                       (clojure.string/replace CONTENT-TAG (clojure.string/replace body-part "$" "\\$"))))
     (doseq [d ["lib" "js" "css" "plugin"]]
       (println "copying" d)
       (copy-over d reveal-js-root out-root))))

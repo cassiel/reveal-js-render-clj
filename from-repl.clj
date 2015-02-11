@@ -19,3 +19,4 @@
 (render-site "React/01_introduction_to_React")
 (render-site "React/02_dynamic_sites_with_React")
 (render-site "React/03_grids_and_calculation_with_React")
+(render-site "AgileDevelopment/01_basic_testing")

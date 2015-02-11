@@ -40,7 +40,7 @@
   [:pre [:code.html (clojure.string/trim (htmlize (clojure.string/join "\n" lines)))]])
 
 (defn tt [text]
-  [:span {:style "font-family:monospace; background-color:rgba(255, 255, 255, 0.5)"} (htmlize text)])
+  [:span {:style "font-family:monospace; background-color:rgba(150, 150, 150, 0.5); padding: 0px 5px;"} (htmlize text)])
 
 (defn image-h [h f]
   [:img {:height h

@@ -33,3 +33,5 @@
   (ls "-l" "/Users/nick/file with spaces.txt"))
 
 (.getCanonicalFile (File. "yes/../x.tmp"))
+
+(slurp "resources/foo.txt")

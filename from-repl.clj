@@ -16,12 +16,9 @@
 (render-site "HTML/02_forms_controls_inputs")
 (render-site "HTML/03_templating_with_Jinja2")
 (render-site "HTML/05_styling_sites_with_Bootstrap")
-
 (render-site "React/01_introduction_to_React")
 (render-site "React/02_dynamic_sites_with_React")
 (render-site "React/03_grids_and_calculation_with_React")
-
 (render-site "AgileDevelopment/01_basic_testing")
-
 (render-site "WebServices/01_running_Flask")
 (render-site "WebServices/02_AJAX")

@@ -22,3 +22,4 @@
 (render-site "AgileDevelopment/01_basic_testing")
 (render-site "WebServices/01_running_Flask")
 (render-site "WebServices/02_AJAX")
+(render-site "WebServices/04_data_visualisation")

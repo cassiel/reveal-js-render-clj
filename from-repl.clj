@@ -24,3 +24,12 @@
 (render-site "WebServices/02_AJAX")
 (render-site "WebServices/04_data_visualisation")
 (render-site "WebServices/05_MongoDB")
+
+(defn render-workshop [ws]
+  (let [dir (File. (format "/Users/nick/CASSIEL/codezoners-workshops/%s/presentation" ws))
+        reveal-js (File. "/Users/nick/GITHUB/cassiel/reveal.js")]
+    (renderer/render-main (File. dir "presentation.clj")
+                          (File. dir "presentation.html")
+                          reveal-js)))
+
+(render-workshop "hackney - codezoners taster")

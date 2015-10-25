@@ -33,3 +33,15 @@
                           reveal-js)))
 
 (render-workshop "hackney - codezoners taster")
+
+(defn render-cmc [dir]
+  (let [home                    (System/getenv "HOME")
+        dir (File. (format "%s/CASSIEL/design-coding/%s/presentation"
+                           home
+                           dir))
+        reveal-js (File. (format "%s/GITHUB/cassiel/reveal.js" home))]
+    (renderer/render-main (File. dir "presentation.clj")
+                          (File. dir "presentation.html")
+                          reveal-js)))
+
+(render-cmc "Arduino")

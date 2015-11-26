@@ -7,7 +7,7 @@
 ;; This function works for the Codezoners presentations in a standard location. Edit to taste for other presentations.
 
 (defn render-site [topic]
-  (let [dir (File. (format "/Users/nick/CASSIEL/codezoners-2-prep/%s/presentation" topic))
+  (let [dir (File. (format "/Users/nick/GITHUB/codezoners/cohort-3-prep/%s/presentation" topic))
         reveal-js (File. "/Users/nick/GITHUB/cassiel/reveal.js")]
     (renderer/render-main (File. dir "presentation.clj")
                           (File. dir "presentation.html")

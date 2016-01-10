@@ -59,9 +59,9 @@
   [:a {:href (str "https://github.com/" stem)} text])
 
 (defn link
-  "Raw link, URL monospaced."
-  [url]
-  [:a {:href url} [:code url]])
+  "Raw link, URL monospaced - or link with text."
+  ([url content] [:a {:href url} content])
+  ([url] (link url [:code url])))
 
 (defn youtube-link [id caption]
   [:a {:href (format "http://www.youtube.com/watch?v=%s" id)} caption])

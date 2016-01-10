@@ -61,4 +61,4 @@
 (render-wt "HTML/02_forms_controls_inputs")
 (render-wt "React/01_introduction_to_React")
 (render-wt "WebServices/02_AJAX")
-(render-wt "WebServices/99_AJAX_forms")
+(render-wt "WebServices/99_AJAX_React")

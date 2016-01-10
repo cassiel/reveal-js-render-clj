@@ -57,3 +57,7 @@
                           reveal-js)))
 
 (render-wt "General/00_Intro")
+(render-wt "HTML/05_styling_sites_with_Bootstrap")
+(render-wt "HTML/02_forms_controls_inputs")
+(render-wt "React/01_introduction_to_React")
+(render-wt "WebServices/02_AJAX")

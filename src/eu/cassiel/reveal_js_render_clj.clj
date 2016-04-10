@@ -49,11 +49,14 @@
 
 (def image (partial image-h 480))
 
+;; FIXME: need to bind ./asset vs. ASSET-ROOT-URL/asset depending on mode.
+
 (defn video-h [h f]
   [:video {:height h
            :controls 1
            :data-autoplay 1}
-   [:source {:src (str ASSET-ROOT-URL f)}]])
+   [:source {:src #_ (str ASSET-ROOT-URL f)
+             (str (File. "videos" f))}]])
 
 (def video (partial video-h 480))
 

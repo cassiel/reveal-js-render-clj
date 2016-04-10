@@ -34,7 +34,7 @@
 
 (render-workshop "hackney - codezoners taster")
 
-(defn render-cmc [dir]
+(defn render-design-coding [dir]
   (let [home (System/getenv "HOME")
         dir (File. (format "%s/CASSIEL/design-coding/%s/presentation"
                            home
@@ -44,7 +44,8 @@
                           (File. dir "presentation.html")
                           reveal-js)))
 
-(render-cmc "Arduino")
+(render-design-coding "CMC/Arduino")
+(render-design-coding "2D-Lab/Git")
 
 (defn render-wt [dir]
     (let [home (System/getenv "HOME")

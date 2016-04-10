@@ -49,11 +49,13 @@
 
 (def image (partial image-h 480))
 
-(defn video [f]
-  [:video {:height 480
+(defn video-h [h f]
+  [:video {:height h
            :controls 1
            :data-autoplay 1}
-   [:source {:src (str (File. "media" f))}]])
+   [:source {:src (str ASSET-ROOT-URL f)}]])
+
+(def video (partial video-h 480))
 
 (defn github [stem text]
   [:a {:href (str "https://github.com/" stem)} text])
@@ -96,6 +98,36 @@
                     (p/include-css (format "css/theme/%s.css" (name theme))))
    :body-part (html [:div.reveal
                      (vec (cons :div.slides slides))])})
+
+;; This machinery is for rendering directly from a project containing a
+;; presentation file which we want to be able to evaluate immediately.
+;; It renders into our SSI-enabled Apache document area.
+
+(def INCLUDE-ROOT (-> (File. (System/getProperty "user.home"))
+                      (File. "Sites")
+                      (File. "reveal.js")
+                      (File. "_included")))
+(def ASSET-ROOT-URL "../reveal-media/")
+
+(defn render1 [& {:keys [head body]}]
+  (.mkdir INCLUDE-ROOT)
+  (spit (str (File. INCLUDE-ROOT "head.html")) head)
+  (spit (str (File. INCLUDE-ROOT "content.html")) body))
+
+(defn render-me [& {:keys [theme title author slides]}]
+  (render1
+   :head (html [:title title]
+               [:meta {:name "description" :content title}]
+               [:meta {:name "author" :content author}]
+               [:link#theme {:rel "stylesheet"
+                             :href (format "css/theme/%s.css" (name theme))}])
+   :body (html [:div.reveal
+                (vec (cons :div.slides slides))])))
+
+;; This machinery is for "batch" rendering from a .clj to a .html, without
+;; needing any server machinery. Upside: result is a single vanilla HTML file
+;; (plus copied reveal.js assets). Downside: `render-main` needs to be
+;; explicitly called with all file arguments to do the work (see `from-repl.clj`).
 
 (def REVEAL-ROOT (File. "/Users/nick/GITHUB/cassiel/reveal.js"))
 

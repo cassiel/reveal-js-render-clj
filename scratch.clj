@@ -35,3 +35,21 @@
 (.getCanonicalFile (File. "yes/../x.tmp"))
 
 (slurp "resources/foo.txt")
+
+(->> "A"
+     (File. "B")
+     str)
+
+(->> "F"
+     (File. "images")
+     ;;(File.)
+     ;;(File. "../../reveal-media/")
+     ;;str
+     )
+
+(str (File. "../../reveal-media/" "X"))
+
+(str (File. "A" "B"))
+
+
+(image-h 480 "X")

@@ -7,6 +7,9 @@
   (:import (java.io File))
   (:gen-class))
 
+;; FIXME: need to bind ./asset vs. ASSET-ROOT-URL/asset depending on mode.
+(def ASSET-ROOT-URL "../reveal-media/")
+
 (defn ^:deprecated render-from-edn [str]
   (html (edn/read-string str)) )
 
@@ -45,18 +48,22 @@
 (defn image-h [h f]
   [:img {:height h
          :style "margin:10px; vertical-align:middle"
-         :src (str (File. "images" f))}])
+         :src (->> f
+                   ;; (File. "images')
+                   (File. ASSET-ROOT-URL)
+                   str)}])
 
 (def image (partial image-h 480))
-
-;; FIXME: need to bind ./asset vs. ASSET-ROOT-URL/asset depending on mode.
 
 (defn video-h [h f]
   [:video {:height h
            :controls 1
            :data-autoplay 1}
-   [:source {:src #_ (str ASSET-ROOT-URL f)
-             (str (File. "videos" f))}]])
+   [:source {:src (->> f
+                       (File. ASSET-ROOT-URL)
+                       str)
+             ;;(str (File. "videos" f))
+             }]])
 
 (def video (partial video-h 480))
 
@@ -110,8 +117,6 @@
                       (File. "Sites")
                       (File. "reveal.js")
                       (File. "_included")))
-(def ASSET-ROOT-URL "../reveal-media/")
-
 (defn render1 [& {:keys [head body]}]
   (.mkdir INCLUDE-ROOT)
   (spit (str (File. INCLUDE-ROOT "head.html")) head)
@@ -134,7 +139,7 @@
 
 (def REVEAL-ROOT (File. "/Users/nick/GITHUB/cassiel/reveal.js"))
 
-(def template (slurp "/Users/nick/GITHUB/cassiel/reveal.js/index-ssi.shtml"))
+(def template (slurp (str REVEAL-ROOT  "/index-ssi.shtml")))
 
 (def HEAD-TAG    #"<!--#include .*/head.html.*-->")
 (def CONTENT-TAG #"<!--#include .*/content.html.*-->")

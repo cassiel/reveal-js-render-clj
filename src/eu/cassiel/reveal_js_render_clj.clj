@@ -8,7 +8,7 @@
   (:gen-class))
 
 ;; FIXME: need to bind ./asset vs. ASSET-ROOT-URL/asset depending on mode.
-(def ASSET-ROOT-URL "../reveal-media/")
+(def ASSET-ROOT-URL "../reveal-media-2/")
 
 (defn ^:deprecated render-from-edn [str]
   (html (edn/read-string str)) )

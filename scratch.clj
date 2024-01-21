@@ -13,6 +13,8 @@
 
 (edn/read-string "a b c")
 
+(eval (read-string "(range 20)"))
+
 (renderer/render-from-clj "/Users/nick/GITHUB/cassiel/reveal-js-render-clj/resources/test_input.clj")
 
 (in-ns 'net.cassiel.reveal-js-render-clj)

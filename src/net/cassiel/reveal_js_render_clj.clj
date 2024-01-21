@@ -49,8 +49,8 @@
   [:img {:height h
          :style "margin:10px; vertical-align:middle"
          :src (->> f
-                   ;; (File. "images')
-                   (File. ASSET-ROOT-URL)
+                   (File. "images")
+                   #_ (File. ASSET-ROOT-URL)
                    str)}])
 
 (def image (partial image-h 480))
@@ -59,10 +59,10 @@
   [:video {:height h
            :controls 1
            :data-autoplay 1}
-   [:source {:src (->> f
+   [:source {:src #_ (->> f
                        (File. ASSET-ROOT-URL)
                        str)
-             ;;(str (File. "videos" f))
+             (str (File. "videos" f))
              }]])
 
 (def video (partial video-h 480))
@@ -105,7 +105,7 @@
   {:head-part (html [:title title]
                     [:meta {:name "description" :content title}]
                     [:meta {:name "author" :content author}]
-                    (p/include-css (format "css/theme/%s.css" (name theme))))
+                    (p/include-css (format "dist/theme/%s.css" (name theme))))
    :body-part (html [:div.reveal
                      (vec (cons :div.slides slides))])})
 
@@ -128,7 +128,7 @@
                [:meta {:name "description" :content title}]
                [:meta {:name "author" :content author}]
                [:link#theme {:rel "stylesheet"
-                             :href (format "css/theme/%s.css" (name theme))}])
+                             :href (format "dist/theme/%s.css" (name theme))}])
    :body (html [:div.reveal
                 (vec (cons :div.slides slides))])))
 
@@ -137,9 +137,8 @@
 ;; (plus copied reveal.js assets). Downside: `render-main` needs to be
 ;; explicitly called with all file arguments to do the work (see `from-repl.clj`).
 
-(def REVEAL-ROOT (File. "/Users/nick/GITHUB/cassiel/reveal.js"))
-
-(def template (slurp (str REVEAL-ROOT  "/index-ssi.shtml")))
+;; (def REVEAL-ROOT (File. (format "%s/GITHUB/cassiel/reveal.js" HOME)))
+;; (def template (slurp (str REVEAL-ROOT  "/index-ssi.shtml")))
 
 (def HEAD-TAG    #"<!--#include .*/head.html.*-->")
 (def CONTENT-TAG #"<!--#include .*/content.html.*-->")
@@ -154,7 +153,7 @@
       (let [enclosing-ns (ns-name *ns*)]
         (try
           (do
-            (in-ns 'eu.cassiel.reveal-js-render-clj)
+            (in-ns 'net.cassiel.reveal-js-render-clj)
             (binding [include-code (fn [f] (code (slurp (-> (.getParent file)
                                                            (File. "include")
                                                            (File. f)))))]
@@ -180,7 +179,7 @@
     (spit out-file (-> template
                        (clojure.string/replace HEAD-TAG (clojure.string/replace head-part "$" "\\$"))
                        (clojure.string/replace CONTENT-TAG (clojure.string/replace body-part "$" "\\$"))))
-    (doseq [d ["lib" "js" "css" "plugin"]]
+    (doseq [d ["dist" "plugin"]]
       (println "copying" d)
       (copy-over d reveal-js-root out-root))))
 

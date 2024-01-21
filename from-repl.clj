@@ -6,12 +6,19 @@
 
 ;; This function works for the Codezoners presentations in a standard location. Edit to taste for other presentations.
 
-(defn render-site [topic]
-  (let [dir (File. (format "/Users/nick/GITHUB/codezoners/cohort-3-prep/%s/presentation" topic))
-        reveal-js (File. "/Users/nick/GITHUB/cassiel/reveal.js")]
-    (renderer/render-main (File. dir "presentation.clj")
-                          (File. dir "presentation.html")
-                          reveal-js)))
+(defn render-site [prefix]
+  (let [HOME (System/getProperty "user.home")
+        DIR (File. (format "%s/GITHUB/codezoners/%s/presentation" HOME prefix))
+        REVEAL_JS (File. (format "%s/GITHUB/cassiel/reveal.js" HOME))]
+    (renderer/render-main (File. DIR "presentation.clj")
+                          (File. DIR "presentation.html")
+                          REVEAL_JS)))
+
+(render-site "USE22105_MakingMachines/Introduction")
+
+
+
+
 
 (render-site "HTML/02_forms_controls_inputs")
 (render-site "HTML/03_templating_with_Jinja2")

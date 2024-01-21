@@ -1,3 +1,3 @@
-(ns eu.cassiel.junk)
+(ns net.cassiel.junk)
 
 (def the-junk "This is the junk.")

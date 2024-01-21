@@ -1,5 +1,5 @@
 (ns user
-  (:require (eu.cassiel [reveal-js-render-clj :as renderer])
+  (:require (net.cassiel [reveal-js-render-clj :as renderer])
             [clojure.edn :as edn]
             [me.raynes.conch :refer [with-programs]])
 
@@ -15,7 +15,7 @@
 
 (renderer/render-from-clj "/Users/nick/GITHUB/cassiel/reveal-js-render-clj/resources/test_input.clj")
 
-(in-ns 'eu.cassiel.reveal-js-render-clj)
+(in-ns 'net.cassiel.reveal-js-render-clj)
 
 *ns*
 

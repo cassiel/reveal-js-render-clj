@@ -1,4 +1,4 @@
-(ns eu.cassiel.reveal-js-render-clj
+(ns net.cassiel.reveal-js-render-clj
   (:require [clojure.tools.cli :refer [parse-opts]]
             [clojure.edn :as edn]
             [hiccup.core :refer :all]

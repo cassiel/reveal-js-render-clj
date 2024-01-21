@@ -1,5 +1,5 @@
 (ns user
-  (:require (eu.cassiel [reveal-js-render-clj :as renderer])
+  (:require (net.cassiel [reveal-js-render-clj :as renderer])
             [clojure.edn :as edn]
             [me.raynes.conch :refer [with-programs]])
   (:import (java.io File)))

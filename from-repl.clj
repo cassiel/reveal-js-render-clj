@@ -11,7 +11,7 @@
         DIR (File. (format "%s/GITHUB/codezoners/%s/presentation" HOME prefix))
         REVEAL_JS (File. (format "%s/GITHUB/cassiel/reveal.js" HOME))]
     (renderer/render-main (File. DIR "presentation.clj")
-                          (File. DIR "presentation.html")
+                          (File. DIR "index.html")
                           REVEAL_JS)))
 
 (render-site "USE22105_MakingMachines/Introduction")
@@ -36,7 +36,7 @@
   (let [dir (File. (format "/Users/nick/CASSIEL/codezoners-workshops/%s/presentation" ws))
         reveal-js (File. "/Users/nick/GITHUB/cassiel/reveal.js")]
     (renderer/render-main (File. dir "presentation.clj")
-                          (File. dir "presentation.html")
+                          (File. dir "index.html")
                           reveal-js)))
 
 (render-workshop "hackney - codezoners taster")
@@ -48,7 +48,7 @@
                            dir))
         reveal-js (File. (format "%s/GITHUB/cassiel/reveal.js" home))]
     (renderer/render-main (File. dir "presentation.clj")
-                          (File. dir "presentation.html")
+                          (File. dir "index.html")
                           reveal-js)))
 
 (render-design-coding "CMC/Arduino")
@@ -62,7 +62,7 @@
                            dir))
         reveal-js (File. (format "%s/GITHUB/cassiel/reveal.js" home))]
     (renderer/render-main (File. dir "presentation.clj")
-                          (File. dir "presentation.html")
+                          (File. dir "index.html")
                           reveal-js)))
 
 (render-wt "General/00_Intro")
@@ -79,7 +79,7 @@
                            dir))
           reveal-js (File. (format "%s/GITHUB/cassiel/reveal.js" home))]
       (renderer/render-main (File. dir "presentation.clj")
-                            (File. dir "presentation.html")
+                            (File. dir "index.html")
                             reveal-js))  )
 
 (render-cosmo "launch")

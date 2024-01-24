@@ -6,31 +6,31 @@
 
 ;; This function works for the Codezoners presentations in a standard location. Edit to taste for other presentations.
 
-(defn render-site [prefix]
+(defn render-site [& {:keys [repo topic]}]
   (let [HOME (System/getProperty "user.home")
-        DIR (File. (format "%s/GITHUB/codezoners/%s/presentation" HOME prefix))
+        DIR (File. (format "%s/GITHUB/codezoners/%s/%s/presentation" HOME repo topic))
         REVEAL_JS (File. (format "%s/GITHUB/cassiel/reveal.js" HOME))]
     (renderer/render-main (File. DIR "presentation.clj")
                           (File. DIR "index.html")
                           REVEAL_JS)))
 
-(render-site "USE22105_MakingMachines/Introduction")
+(render-site :repo "USE22105_MakingMachines" :topic "Introduction")
+(render-site :repo "CRC22204_CodedSpaces" :topic "Introduction")
 
 
-
-
-
-(render-site "HTML/02_forms_controls_inputs")
-(render-site "HTML/03_templating_with_Jinja2")
-(render-site "HTML/05_styling_sites_with_Bootstrap")
-(render-site "React/01_introduction_to_React")
-(render-site "React/02_dynamic_sites_with_React")
-(render-site "React/03_grids_and_calculation_with_React")
-(render-site "AgileDevelopment/01_basic_testing")
-(render-site "WebServices/01_running_Flask")
-(render-site "WebServices/02_AJAX")
-(render-site "WebServices/04_data_visualisation")
-(render-site "WebServices/05_MongoDB")
+(comment
+  ;; Out of date calls:
+  (render-site "HTML/02_forms_controls_inputs")
+  (render-site "HTML/03_templating_with_Jinja2")
+  (render-site "HTML/05_styling_sites_with_Bootstrap")
+  (render-site "React/01_introduction_to_React")
+  (render-site "React/02_dynamic_sites_with_React")
+  (render-site "React/03_grids_and_calculation_with_React")
+  (render-site "AgileDevelopment/01_basic_testing")
+  (render-site "WebServices/01_running_Flask")
+  (render-site "WebServices/02_AJAX")
+  (render-site "WebServices/04_data_visualisation")
+  (render-site "WebServices/05_MongoDB"))
 
 (defn render-workshop [ws]
   (let [dir (File. (format "/Users/nick/CASSIEL/codezoners-workshops/%s/presentation" ws))

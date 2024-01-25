@@ -15,7 +15,7 @@
                           REVEAL_JS)))
 
 (render-site :repo "USE22105_MakingMachines" :topic "Introduction")
-(render-site :repo "CRC22204_CodedSpaces" :topic "Introduction")
+(render-site :repo "CRC22204_CodedSpaces" :topic "S01/Introduction")
 
 
 (comment

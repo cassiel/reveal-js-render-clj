@@ -14,7 +14,9 @@
                           (File. DIR "index.html")
                           REVEAL_JS)))
 
-(render-site :repo "USE22105_MakingMachines" :topic "Introduction")
+(render-site :repo "USE22105_MakingMachines" :topic "S01/Introduction")
+(render-site :repo "USE22105_MakingMachines" :topic "S02/Arduino")
+
 (render-site :repo "CRC22204_CodedSpaces" :topic "S01/Introduction")
 
 

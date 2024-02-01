@@ -17,8 +17,8 @@
 (render-site :repo "USE22105_MakingMachines" :topic "S01/Introduction")
 (render-site :repo "USE22105_MakingMachines" :topic "S02/Arduino")
 
-(render-site :repo "CRC22204_CodedSpaces" :topic "S01/Introduction")
-
+(render-site :repo "CRC22204_CodedSpaces" :topic "S01")
+(render-site :repo "CRC22204_CodedSpaces" :topic "S03")
 
 (comment
   ;; Out of date calls:
